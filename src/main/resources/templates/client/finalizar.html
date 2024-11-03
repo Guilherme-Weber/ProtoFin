@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{client/fragments/layout}">
+
+<head>
+
+<title>Finalizar a Compra</title>
+
+</head>
+
+<body>
+
+	<!-- Page Content -->
+	<div class="container" layout:fragment="corpo">
+		<div class="row">
+			<div class="col-12">
+				<h1>Info user logado</h1>
+			</div>
+
+
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Imagem</th>
+								<th scope="col">Produto</th>
+								<th scope="col"></th>
+								<th></th>
+								<th scope="col" class="text-center">Quantidade</th>
+								<th scope="col" class="text-right">Valor Unitário</th>
+								<th scope="col" class="text-right">Valor Total</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${listaItens}">
+								<td><img
+									th:src="@{/mostrarImagem/{imagem}(imagem=${item.produto.nomeImagem})}"
+									style="max-width: 50px; max-height: 50px;" /></td>
+								<td th:text="${item.produto.descricao}"></td>
+								<td></td>
+								<td class="text-right"></td>
+								<td class="text-center" th:text="${item.quantidade}"></td>
+
+								<td class="text-right"
+									th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}">R$</td>
+								<td class="text-right"
+									th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
+
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><strong>Total</strong></td>
+								<td class="text-right"><strong><span
+										th:text="'R$' + ${#numbers.formatDecimal(compra.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span></strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="col-12">
+				<select class="form-control" id="cars">
+					<option value="Cartão de Crédito">Cartão de Crédito</option>
+					<option value="Cartão de Débito">Cartão de Débito</option>
+					<option value="Boleto">Boleto</option>
+					<option value="PIX">PIX</option>
+				</select>
+			</div>
+			
+			<div class="col mb-2">
+				<div class="row">
+
+					<div class="col-sm-12 col-md-12 text-right">
+						<a class="btn btn-lg btn-block btn-success text-uppercase"
+							th:href="finalizar" role="button">Confirmar a Compra</a>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+</body>
+
+</html>

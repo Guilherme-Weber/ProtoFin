@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{client/fragments/layout}">
+
+<head>
+
+<title>Carrinho de Compra</title>
+
+</head>
+
+<body>
+
+	<!-- Page Content -->
+	<div class="container" layout:fragment="corpo">
+		<div class="row">
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Imagem</th>
+								<th scope="col">Produto</th>
+								<th scope="col"></th>
+								<th scope="col" class="text-center">Quantidade</th>
+								<th scope="col" class="text-right">Valor Unitário</th>
+								<th scope="col" class="text-right">Valor Total</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${listaItens}">
+								<td><img
+									th:src="@{/mostrarImagem/{imagem}(imagem=${item.produto.nomeImagem})}"
+									style="max-width: 50px; max-height: 50px;" /></td>
+								<td th:text="${item.produto.descricao}"></td>
+								<td></td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a class="btn btn-sm btn-success"
+									th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${1})}"
+									role="button"><i class="fa fa-plus"></i></a> &nbsp;&nbsp; <span
+									th:text="${item.quantidade}"></span> &nbsp;&nbsp; <a
+									class="btn btn-sm btn-success"
+									th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${0})}"
+									role="button"><i class="fa fa-minus"></i></a>
+								</td>
+
+								<td class="text-right"
+									th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}">R$</td>
+								<td class="text-right"
+									th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
+								<td class="text-right"><a class="btn btn-sm btn-danger"
+									th:href="@{/removerProduto/{id}(id=${item.produto.id})}"
+									role="button"><i class="fa fa-trash"></i></a></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><strong>Total</strong></td>
+								<td class="text-right"><strong><span
+										th:text="'R$' + ${#numbers.formatDecimal(compra.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span></strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="col mb-2">
+				<div class="row">
+					<div class="col-sm-12  col-md-6">
+
+						<a class="btn btn-lg btn-block btn-light text-uppercase"
+							th:href="@{/}" role="button"> <svg
+								style="max-width: 30px; max-height: 30px; padding-bottom: 5px"
+								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path
+									d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z" /></svg>
+							&nbsp;&nbsp; Continue Comprando
+						</a>
+					</div>
+					<div class="col-sm-12 col-md-6 text-right">
+						<a class="btn btn-lg btn-block btn-success text-uppercase"
+							th:href="finalizar" role="button">Finalizar a Compra
+							&nbsp;&nbsp; <svg
+								style="max-width: 30px; max-height: 30px; padding-bottom: 5px"
+								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+								<path fill="#ffffff"
+									d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" /></svg>
+						</a>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+</body>
+
+</html>
