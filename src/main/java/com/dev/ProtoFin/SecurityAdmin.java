@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,15 +15,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class BasicConfiguration extends WebSecurityConfigurerAdapter {
+@Order(2)
+public class SecurityAdmin extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
-
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,9 +40,24 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().authorizeRequests().antMatchers("/admin/entrada/**").hasAuthority("gerente")
-				.antMatchers("/admin/**").hasAnyAuthority("gerente", "vendedor").and().formLogin().loginPage("/login")
+				.antMatchers("/admin/**").hasAnyAuthority("gerente", "vendedor", "professor").and().formLogin().loginPage("/login")
 				.permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/admin").and().exceptionHandling().accessDeniedPage("/negado");
+				.logoutSuccessUrl("/").deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage("/negado");
+
+//		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/administrativo/cadastrar/**")
+//				.hasAnyAuthority("gerente").antMatchers("/administrativo/**").authenticated().and().formLogin()
+//				.loginPage("/login").failureUrl("/login").loginProcessingUrl("/admin")
+//				.defaultSuccessUrl("/administrativo").usernameParameter("username").passwordParameter("password").and()
+//				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/administrativo/logout"))
+//				.logoutSuccessUrl("/login").deleteCookies("JSESSIONID").and().exceptionHandling()
+//				.accessDeniedPage("/negado").and().csrf().disable();
+
+//		http.csrf().disable().authorizeRequests().antMatchers("/login").permitAll().antMatchers("/admin/cadastrar/**")
+//				.hasAnyAuthority("gerente").antMatchers("/admin/**").authenticated().and().formLogin()
+//				.loginPage("/login").failureUrl("/").loginProcessingUrl("/admin").defaultSuccessUrl("/admin")
+//				.usernameParameter("username").passwordParameter("password").and().logout()
+//				.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout")).logoutSuccessUrl("/").and()
+//				.exceptionHandling().accessDeniedPage("/negado");
 
 	}
 }

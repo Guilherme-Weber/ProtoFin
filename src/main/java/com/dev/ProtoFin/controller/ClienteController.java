@@ -28,7 +28,7 @@ public class ClienteController {
 
 	@GetMapping("/clientes/cadastrar")
 	public ModelAndView cadastrar(Cliente cliente) {
-		ModelAndView mv = new ModelAndView("client/cadastro");
+		ModelAndView mv = new ModelAndView("client/cadastrar");
 		mv.addObject("cliente", cliente);
 		mv.addObject("listaCidades", cidadeRepository.findAll());
 		return mv;
