@@ -5,6 +5,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,6 +34,18 @@ public class FuncionarioController {
 		ModelAndView mv = new ModelAndView("admin/funcionarios/cadastro");
 		mv.addObject("funcionario", funcionario);
 		mv.addObject("listaCidades", cidadeRepository.findAll());
+		return mv;
+	}
+
+	@GetMapping("/cliente/funcionarios/cadastrar")
+	public ModelAndView cadastrarCliente(Funcionario funcionario) {
+		ModelAndView mv = new ModelAndView("client/perfil/cadastro");
+		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
+			String email = autenticado.getName();
+			funcionario = funcionarioRepository.buscarFuncionariEmail(email).get(0);
+		}
+		mv.addObject("funcionario", funcionario);
 		return mv;
 	}
 
@@ -69,6 +84,21 @@ public class FuncionarioController {
 		funcionarioRepository.saveAndFlush(funcionario);
 
 		return cadastrar(new Funcionario());
+	}
+
+	@PostMapping("/cliente/funcionarios/salvar")
+	public String salvarCliente(@Valid Funcionario funcionario, BindingResult result) {
+
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "redirect:/";
+		}
+
+		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+
+		funcionarioRepository.saveAndFlush(funcionario);
+
+		return "redirect:/";
 	}
 
 }

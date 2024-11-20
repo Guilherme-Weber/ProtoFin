@@ -63,15 +63,17 @@
 </head>
 <body>
 	<div class="login-form">
-		<form th:action="@{/login}" method="post">
+		<form th:action="@{/admin}" method="post">
 			<h2 class="text-center">Efetue o login na conta VivaEscola</h2>
 			<div class="form-group">
 				<input type="text" class="form-control" name="username"
-					placeholder="E-mail" required="required">
+					placeholder="Email" autofocus="autofocus" value=""
+					required="required" />
 			</div>
 			<div class="form-group">
-				<input type="password" name="password" class="form-control"
-					placeholder="Senha" required="required">
+				<input type="password" class="form-control" name="password"
+					placeholder="Senha" autofocus="autofocus" value=""
+					required="required" />
 			</div>
 			<div class="form-group">
 				<button type="submit"

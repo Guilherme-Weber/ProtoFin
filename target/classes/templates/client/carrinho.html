@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{client/fragments/layout}">
+	layout:decorate="~{client/fragments/layoutCarrinho}">
 
 <head>
 
@@ -21,10 +21,10 @@
 								<th scope="col">Imagem</th>
 								<th scope="col">Produto</th>
 								<th scope="col"></th>
-								<th scope="col" class="text-center">Quantidade</th>
-								<th scope="col" class="text-right">Valor Unitário</th>
-								<th scope="col" class="text-right">Valor Total</th>
-								<th></th>
+								<th scope="col" class="text-center"></th>
+								<th scope="col" class="text-center"></th>
+								<th scope="col" class="text-center">Valor</th>
+								<th>Remover</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,21 +34,21 @@
 									style="max-width: 50px; max-height: 50px;" /></td>
 								<td th:text="${item.produto.descricao}"></td>
 								<td></td>
-								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<td><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<a class="btn btn-sm btn-success"
 									th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${1})}"
 									role="button"><i class="fa fa-plus"></i></a> &nbsp;&nbsp; <span
 									th:text="${item.quantidade}"></span> &nbsp;&nbsp; <a
 									class="btn btn-sm btn-success"
 									th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${0})}"
-									role="button"><i class="fa fa-minus"></i></a>
+									role="button"><i class="fa fa-minus"></i></a> -->
 								</td>
 
-								<td class="text-right"
-									th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}">R$</td>
-								<td class="text-right"
+								<td class="text-center">
+									<!-- th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}" --></td>
+								<td class="text-center"
 									th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
-								<td class="text-right"><a class="btn btn-sm btn-danger"
+								<td class="text-center"><a class="btn btn-sm btn-danger"
 									th:href="@{/removerProduto/{id}(id=${item.produto.id})}"
 									role="button"><i class="fa fa-trash"></i></a></td>
 							</tr>
@@ -57,10 +57,12 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td></td>
-								<td><strong>Total</strong></td>
-								<td class="text-right"><strong><span
+								<td class="text-center"><strong>Total</strong></td>
+								<td class="text-center"><strong><span
 										th:text="'R$' + ${#numbers.formatDecimal(compra.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span></strong></td>
+								<td class="text-center"><a class="btn btn-sm btn-danger"
+									href="/finalizar/finalizarForReal" role="button"><i
+										class="fa fa-trash"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -89,7 +91,6 @@
 								<path fill="#ffffff"
 									d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" /></svg>
 						</a>
-
 					</div>
 				</div>
 			</div>

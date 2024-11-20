@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{client/fragments/layoutEnd}">
+
+<head>
+<title>Compra Finalizada</title>
+</head>
+<body>
+	<!-- Page Content -->
+	<div class="container" layout:fragment="corpo">
+
+		<div class="row">
+
+			<div style="text-align: center;" class="col-12">
+				<h3></h3>
+			</div>
+
+			<div style="text-align: center;" class="col-12">
+				<h3>
+					<span>Comprovante de Compra</span>
+				</h3>
+
+			</div>
+
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Imagem</th>
+								<th scope="col">Produto</th>
+								<th scope="col"></th>
+								<th></th>
+								<th></th>
+								<th scope="col" class="text-center">Quantidade</th>
+
+								<th scope="col" class="text-right">Valor Total</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${listaItens}">
+								<td><img
+									th:src="@{/mostrarImagem/{imagem}(imagem=${item.produto.nomeImagem})}"
+									style="max-width: 50px; max-height: 50px;" /></td>
+								<td th:text="${item.produto.descricao}"></td>
+								<td></td>
+								<td></td>
+								<td class="text-right"></td>
+								<td class="text-center" th:text="${item.quantidade}"></td>
+
+
+								<td class="text-right"
+									th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
+
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-center"><strong>Total</strong></td>
+								<td class="text-right"><strong><span
+										th:text="'R$' + ${#numbers.formatDecimal(compra.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span></strong></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /.container -->
+
+	</div>
+</body>
+
+</html>

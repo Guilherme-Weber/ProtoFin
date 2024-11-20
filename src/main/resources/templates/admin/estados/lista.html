@@ -44,12 +44,17 @@
 								role="button"> <span class="oi oi-brush" title="Editar"
 									aria-hidden="true"></span>
 
-							</a> <a class="btn btn-danger btn-sm" data-toggle="modal"
+							</a> <a class="btn btn-danger btn-sm"
+								th:href="@{/admin/estados/remover/{id}(id=${estado.id})}"
+								role="button"> <span class="oi oi-circle-x" title="Editar"
+									aria-hidden="true"></span>
+
+							</a> <!-- 	<a class="btn btn-danger btn-sm" data-toggle="modal"
 								data-target="#modal-warning"
 								th:attr="data-target='#modal-warning'+${estado.id}"><span
-									class="oi oi-circle-x" title="Remover" aria-hidden="true"></span></a>
+									class="oi oi-circle-x" title="Remover" aria-hidden="true"></span></a> -->
 
-								<div class="modal modal-warning fade in"
+								<!-- <div class="modal modal-warning fade in"
 									th:id="modal-warning+${estado.id}">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -73,7 +78,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 						</tr>
 					</tbody>
 				</table>

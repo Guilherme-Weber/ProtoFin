@@ -25,6 +25,9 @@ public class Compra implements Serializable {
 	@ManyToOne
 	private Cliente cliente;
 
+	@ManyToOne
+	private Funcionario funcionario;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra = new Date();
 
@@ -50,6 +53,14 @@ public class Compra implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public Date getDataCompra() {

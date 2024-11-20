@@ -13,8 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
 @EnableWebSecurity
+@Configuration
 @Order(1)
 public class SecurityCliente extends WebSecurityConfigurerAdapter {
 
@@ -25,40 +25,75 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.jdbcAuthentication().dataSource(dataSource)
+//				.usersByUsernameQuery(
+//						"select email as username, senha as password, 1 as enable from cliente where email=?")
+//				.authoritiesByUsernameQuery(
+//						"select cliente.email as username, 'cliente' as authority from cliente where cliente.email=?")
+//				.passwordEncoder(new BCryptPasswordEncoder());
+//	}
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
 		auth.jdbcAuthentication().dataSource(dataSource)
 				.usersByUsernameQuery(
-						"select email as username, senha as password, 1 as enable from cliente where email=?")
+						"select email as username, senha as password, 1 as enable from funcionario where email=?")
 				.authoritiesByUsernameQuery(
-						"select cliente.email as username, 'cliente' as authority from cliente where cliente.email=?")
+						"select funcionario.email as username, papel.nome as authority from permissao inner join funcionario on funcionario.id=permissao.funcionario_id inner join papel on permissao.papel_id=papel.id where funcionario.email=?")
 				.passwordEncoder(new BCryptPasswordEncoder());
-
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-//		http.csrf().disable().authorizeRequests().antMatchers("/admin/entrada/**").hasAuthority("gerente")
-//				.antMatchers("/admin/**").hasAnyAuthority("gerente", "vendedor", "professor").and().formLogin()
-//				.loginPage("/login").permitAll().and().logout()
-//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
-//				.exceptionHandling().accessDeniedPage("/negado");
-
-		http.csrf().disable().authorizeRequests().antMatchers("/finalizar/**").hasAuthority("cliente").and().formLogin().loginPage("/clientes/cadastrar").permitAll()
-				.failureUrl("/clientes/cadastrar").loginProcessingUrl("/finalizar/login")
-				.defaultSuccessUrl("/finalizar").usernameParameter("username").passwordParameter("password").and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/cliente/logout")).logoutSuccessUrl("/").and()
-				.exceptionHandling().accessDeniedPage("/negado");
-
-//		http.antMatcher("/finalizar/**").authorizeRequests().anyRequest().hasAnyAuthority("cliente").and().csrf()
-//				.disable().formLogin().loginPage("/clientes/cadastrar").permitAll().failureUrl("/clientes/cadastrar")
-//				.loginProcessingUrl("/finalizar/login").defaultSuccessUrl("/carrinho").usernameParameter("username")
-//				.passwordParameter("password").and().logout()
-//				.logoutRequestMatcher(new AntPathRequestMatcher("/finalizar/logout")).logoutSuccessUrl("/").permitAll()
-//				.and().exceptionHandling().accessDeniedPage("/negadoCliente");
-
+		
+		http
+		.authorizeRequests()
+		.antMatchers("/login").permitAll()
+		.antMatchers("/admin/cadastrar/**").hasAnyAuthority("admin")
+		.antMatchers("/finalizar/**").hasAnyAuthority("cliente")
+		.antMatchers("/mensagemFinalizou/**").hasAnyAuthority("cliente")
+		.antMatchers("/cliente/funcionarios/cadastrar/**").hasAnyAuthority("cliente")
+		.antMatchers("/perfil/cadastro**").hasAnyAuthority("cliente")
+		.antMatchers("/admin/**").hasAnyAuthority("admin", "professor")
+		.and()
+		.formLogin()
+		.loginPage("/login")
+		.failureUrl("/login")
+		.loginProcessingUrl("/admin")
+		.defaultSuccessUrl("/")
+		.usernameParameter("username")
+		.passwordParameter("password")
+		.and()
+		.logout()
+		.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
+		.logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+		.and()
+		.exceptionHandling().accessDeniedPage("/")
+		.and()
+		.csrf().disable();
+		
+		
+		
+//		http.csrf().disable()
+//		.authorizeRequests()
+//		.antMatchers("/finalizar/**").hasAuthority("cliente")
+//		.and()
+//		.formLogin()	
+//		.loginPage("/clientes/cadastrar").permitAll()
+//		.failureUrl("/clientes/cadastrar")
+//		.loginProcessingUrl("/finalizar/login")
+//		.defaultSuccessUrl("/finalizar")
+//			.usernameParameter("username")
+//			.passwordParameter("password")
+//		.and()
+//		.logout()
+//		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//		.logoutSuccessUrl("/").deleteCookies("JSESSIONID").permitAll()
+//		.and()
+//		.exceptionHandling().accessDeniedPage("/negado");
 	}
+	
 }
