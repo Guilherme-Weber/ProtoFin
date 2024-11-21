@@ -18,7 +18,6 @@ import com.dev.ProtoFin.models.Compra;
 import com.dev.ProtoFin.models.Funcionario;
 import com.dev.ProtoFin.models.ItensCompra;
 import com.dev.ProtoFin.models.Produto;
-import com.dev.ProtoFin.repository.ClienteRepository;
 import com.dev.ProtoFin.repository.CompraRepository;
 import com.dev.ProtoFin.repository.FuncionarioRepository;
 import com.dev.ProtoFin.repository.ItensCompraRepository;

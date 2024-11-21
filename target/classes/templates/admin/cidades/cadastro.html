@@ -10,15 +10,19 @@
 		<div class="page-header">
 			<nav class="navbar navbar-expand-md navbar-top bg-light">
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-					<ul class="navbar-nav">
+					<ul class="navbar-nav" style="padding-top: 15px">
 						<li class="nav-item active"><i class="oi oi-caret-right"></i>
 							<span>Cadastrar Cidade</span></li>
 					</ul>
+
+					<div class="container" style="text-align: right;">
+						<a class="btn btn-success btn-md" href="/admin/cidades/listar"
+							role="button"> <span class="oi oi-spreadsheet"
+							title="Cadastro" aria-hidden="true"></span> <span>Listar
+								Cidade</span>
+						</a>
+					</div>
 				</div>
-				<a class="btn btn-primary btn-md" href="/admin/cidades/listar"
-					role="button"> <span class="oi oi-spreadsheet" title="Cadastro"
-					aria-hidden="true"></span> <span>Listar Cidade</span>
-				</a>
 			</nav>
 		</div>
 
@@ -32,7 +36,7 @@
 							autofocus="autofocus" th:field="*{nome}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
-					
+
 					<div class="form-group col-md-6">
 						<label for="salario">Estado</label> <select th:field="*{estado}"
 							class="form-control">
@@ -44,7 +48,7 @@
 				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" value="" />
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				<button type="submit" class="btn btn-success btn-sm">Salvar</button>
 			</form>
 		</div>
 	</section>
