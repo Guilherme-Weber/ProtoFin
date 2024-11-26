@@ -48,13 +48,18 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="/">Home
-								<span class="sr-only">(current)</span>
+						<li class="nav-item"><a class="nav-link"> <span
+								th:text="'Nome: ' + ${funcionario.nome}"></span></a></li>
+						<li class="nav-item"><a class="nav-link"> <span
+								th:text="'Email: ' + ${funcionario.email}"></span></a></li>
+						<li class="nav-item"><a class="nav-link" href="/">Home <span
+								class="sr-only">(current)</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="/sobre">Sobre</a></li>
 						<li class="nav-item"><a class="nav-link" href="/carrinho">Carrinho</a>
-						<li class="nav-item"><a class="nav-link"
-							style="text-decoration: underline #59c963" href="/perfilAluno">Perfil</a>
+						<li class="nav-item active"><a class="nav-link"
+							style="text-decoration: underline #59c963"
+							href="/cliente/funcionarios/cadastrar">Perfil</a>
 						<li class="nav-item"><a class="nav-link" href="/admin/logout">Sair</a></li>
 					</ul>
 				</div>
@@ -99,9 +104,10 @@
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span
 						style="color: black; background-color: #59c963;"
-						class="nav-link active">Perfil</span></li>
-					<li class="nav-item"><a class="nav-link" href="/perfilEditar">
-							<i class="oi oi-plus"></i> <span>Editar </span>
+						class="nav-link active">Pagamentos</span></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/client/pagamentos/listar"> <i class="oi oi-plus"></i> <span>Listar
+						</span>
 					</a></li>
 				</ul>
 

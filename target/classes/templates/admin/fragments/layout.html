@@ -27,7 +27,7 @@
 	<header>
 		<nav style="padding-top: 0px; margin-top: 0px;"
 			class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-			<div class="container">
+			<div style="margin: 0px" class="container">
 				<div class="navbar-header">
 
 					<a href="/admin"><img class="navbar-brand"
@@ -40,7 +40,8 @@
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 
-						<li class="nav-item"><a class="nav-link" href="/admin/logout">Sair</a></li>
+						<!-- <li class="nav-item"><a class="nav-link"
+							style="color: #59c963" href="/admin/logout">Sair</a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -54,7 +55,7 @@
 
 				<ul class="nav nav-pills">
 					<li style="text-indent: 10px; margin-top: 10px" class="nav-item"><a
-						class="nav-link " href="/"> <i
+						class="nav-link " href="/admin/logout"> <i
 							class="oi oi-media-skip-backward"></i> <span>Sair do
 								Painel Administrativo</span>
 					</a></li>
@@ -70,21 +71,21 @@
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span
 						style="color: black; background-color: #59c963;"
-						class="nav-link active">Funcionario</span></li>
+						class="nav-link active">Modalidades</span></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/admin/funcionarios/cadastrar"> <i class="oi oi-plus"></i>
-							<span>Cadastrar </span>
+						href="/admin/produtos/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
+						</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/admin/funcionarios/listar"> <i
-							class="oi oi-spreadsheet"></i> <span>Listar </span>
+						href="/admin/produtos/listar"> <i class="oi oi-spreadsheet"></i>
+							<span>Listar </span>
 					</a></li>
 				</ul>
 
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span
 						style="color: black; background-color: #59c963;"
-						class="nav-link active">Papeis</span></li>
+						class="nav-link active">Funções</span></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/admin/papeis/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
 						</span>
@@ -92,6 +93,20 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/admin/papeis/listar"> <i class="oi oi-spreadsheet"></i>
 							<span>Listar </span>
+					</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span
+						style="color: black; background-color: #59c963;"
+						class="nav-link active">Usuários</span></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/funcionarios/cadastrar"> <i class="oi oi-plus"></i>
+							<span>Cadastrar </span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/funcionarios/listar"> <i
+							class="oi oi-spreadsheet"></i> <span>Listar </span>
 					</a></li>
 				</ul>
 
@@ -109,44 +124,12 @@
 					</a></li>
 				</ul>
 
-				<!-- <ul class="nav nav-pills">
-					<li class="nav-item"><span
-						style="color: black; background-color: #59c963;"
-						class="nav-link active">Estados</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/admin/estados/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
-						</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/admin/estados/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul>
-
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span
 						style="color: black; background-color: #59c963;"
-						class="nav-link active">Cidades</span></li>
+						class="nav-link active">Histórico de Pagamentos</span></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/admin/cidades/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
-						</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/admin/cidades/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul> -->
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span
-						style="color: black; background-color: #59c963;"
-						class="nav-link active">Modalidade</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/admin/produtos/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
-						</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/admin/produtos/listar"> <i class="oi oi-spreadsheet"></i>
+						href="/admin/pagamentos/listar"> <i class="oi oi-spreadsheet"></i>
 							<span>Listar </span>
 					</a></li>
 				</ul>
@@ -156,13 +139,9 @@
 						style="color: black; background-color: #59c963;"
 						class="nav-link active">Calendários</span></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/admin/calendarios/cadastrar"> <i class="oi oi-plus"></i>
-							<span>Cadastrar </span>
+						href="/admin/calendarios/cadastrar"> <i
+							class="oi oi-data-transfer-upload"></i> <span>Upload </span>
 					</a></li>
-					<!-- <li class="nav-item"><a class="nav-link"
-						href="/admin/calendarios/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-					</a></li> -->
 				</ul>
 
 			</nav>

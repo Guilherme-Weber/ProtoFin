@@ -19,12 +19,12 @@
 						<thead>
 							<tr>
 								<th scope="col">Imagem</th>
-								<th scope="col">Produto</th>
+								<th scope="col">Descrição</th>
 								<th scope="col"></th>
 								<th scope="col" class="text-center"></th>
 								<th scope="col" class="text-center"></th>
 								<th scope="col" class="text-center">Valor</th>
-								<th>Remover</th>
+								<th class="text-center">Remover</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,7 +34,8 @@
 									style="max-width: 50px; max-height: 50px;" /></td>
 								<td th:text="${item.produto.descricao}"></td>
 								<td></td>
-								<td><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<td>
+									<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<a class="btn btn-sm btn-success"
 									th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${1})}"
 									role="button"><i class="fa fa-plus"></i></a> &nbsp;&nbsp; <span
@@ -45,13 +46,25 @@
 								</td>
 
 								<td class="text-center">
-									<!-- th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}" --></td>
+									<!-- th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}" -->
+								</td>
 								<td class="text-center"
 									th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
-								<td class="text-center"><a class="btn btn-sm btn-danger"
+								<td class="text-center"><a class="btn btn-sm btn-danger "
 									th:href="@{/removerProduto/{id}(id=${item.produto.id})}"
 									role="button"><i class="fa fa-trash"></i></a></td>
 							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-center"><strong><span>Remover
+											Tudo</span></strong></td>
+							</tr>
+
 							<tr>
 								<td></td>
 								<td></td>
@@ -79,12 +92,12 @@
 								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 								<path
 									d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z" /></svg>
-							&nbsp;&nbsp; Continue Comprando
+							&nbsp;&nbsp; Voltar
 						</a>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
 						<a class="btn btn-lg btn-block btn-success text-uppercase"
-							th:href="finalizar" role="button">Finalizar a Compra
+							th:href="finalizar" role="button">Finalizar a Reserva
 							&nbsp;&nbsp; <svg
 								style="max-width: 30px; max-height: 30px; padding-bottom: 5px"
 								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

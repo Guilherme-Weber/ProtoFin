@@ -2,7 +2,7 @@
 <html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{admin/fragments/layout}">
 <head>
-<title>Cadastro de Funcionario</title>
+<title>Cadastro de Usuário</title>
 </head>
 <body>
 
@@ -12,14 +12,14 @@
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 					<ul class="navbar-nav" style="padding-top: 15px">
 						<li class="nav-item active"><i class="oi oi-caret-right"></i>
-							<span style="padding-top: 10px">Cadastrar Funcionários</span></li>
+							<span style="padding-top: 10px">Cadastrar Usuário</span></li>
 					</ul>
 
 					<div class="container" style="text-align: right;">
 						<a class="btn btn-success btn-md"
 							href="/admin/funcionarios/listar" role="button"> <span
 							class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-							<span>Listar Funcionários</span>
+							<span>Listar Usuário</span>
 						</a>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 				method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-12">
-						<label for="nome">Nome do Funcionário</label> <input type="text"
+						<label for="nome">Nome do Usuário</label> <input type="text"
 							class="form-control" id="nome" placeholder="Nome Completo"
 							autofocus="autofocus" th:field="*{nome}" value="" />
 						<div class="invalid-feedback"></div>
@@ -131,7 +131,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="senha">Senha</label> <input type="password"
-							class="form-control" id="senha" name="senha" value="" />
+							class="form-control" id="senha" name="senha" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{admin/fragments/layout}">
+	layout:decorate="~{client/fragments/layoutPerfil}">
 <head>
-<title>Lista de Reservas</title>
+<title>Lista de Permissões</title>
 </head>
 <body>
 
@@ -26,8 +26,7 @@
 							<th>Data de Compra</th>
 							<th>Forma de Pagamento</th>
 							<th>Valor da Reserva</th>
-							<th>Nome do Cliente</th>
-							<th>Email do Cliente</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -36,8 +35,6 @@
 							<td th:text="${#dates.format(compra.dataCompra, 'dd/MM/yyyy')}"></td>
 							<td th:text="${compra.formaPagamento}"></td>
 							<td th:text="${compra.valorTotal}"></td>
-							<td th:text="${compra.funcionario.nome}"></td>
-							<td th:text="${compra.funcionario.email}"></td>
 						</tr>
 					</tbody>
 				</table>

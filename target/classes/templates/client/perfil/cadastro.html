@@ -2,7 +2,7 @@
 <html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{client/fragments/layoutPerfil}">
 <head>
-<title>Cadastro de Funcionario</title>
+<title>Perfil</title>
 </head>
 <body>
 
@@ -18,11 +18,11 @@
 		</div>
 
 		<div class="container" id="cadastro">
-			<form action="/cliente/funcionarios/salvar" th:object="${funcionario}"
-				method="POST">
+			<form action="/cliente/funcionarios/salvar"
+				th:object="${funcionario}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-12">
-						<label for="nome">Nome do Funcionário</label> <input type="text"
+						<label for="nome">Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="Nome Completo"
 							autofocus="autofocus" th:field="*{nome}" value="" />
 						<div class="invalid-feedback"></div>
@@ -31,14 +31,15 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="email">Email</label> <input type="text"
-							class="form-control" th:field="*{email}" id="email" name="email"
-							value="" />
+							placeholder="Email" class="form-control" th:field="*{email}"
+							id="email" name="email" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 
 					<div class="form-group col-md-6">
 						<label for="senha">Senha</label> <input type="password"
-							class="form-control" id="senha" name="senha" value="" required/>
+							class="form-control" id="senha" name="senha" placeholder="Senha"
+							value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
