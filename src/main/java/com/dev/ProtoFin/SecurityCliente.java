@@ -58,6 +58,8 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 		.antMatchers("/cliente/funcionarios/cadastrar/**").hasAnyAuthority("cliente")
 		.antMatchers("/perfil/cadastro**").hasAnyAuthority("cliente")
 		.antMatchers("/admin/**").hasAnyAuthority("admin", "professor")
+		.antMatchers("/admin/homeTeacher**").hasAnyAuthority("admin", "professor")
+		.antMatchers("/prof**").hasAnyAuthority("admin", "professor")
 		.and()
 		.formLogin()
 		.loginPage("/login")

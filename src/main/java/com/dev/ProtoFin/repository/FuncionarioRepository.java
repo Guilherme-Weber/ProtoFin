@@ -12,5 +12,4 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 	@Query("from Funcionario where email=?1")
 	public List<Funcionario> buscarFuncionariEmail(String email);
 
-
 }

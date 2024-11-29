@@ -37,7 +37,6 @@ public class PdfController {
 		return null;
 	}
 
-
 	@GetMapping("/file")
 	public ResponseEntity<InputStreamResource> getFile() throws IOException {
 		try (FileInputStream fileInputStream = new FileInputStream(caminhoPdf)) {

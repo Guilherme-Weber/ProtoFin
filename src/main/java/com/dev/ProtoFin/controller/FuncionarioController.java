@@ -49,6 +49,18 @@ public class FuncionarioController {
 		return mv;
 	}
 
+	@GetMapping("/professor/funcionarios/cadastrar")
+	public ModelAndView logarprofessor(Funcionario funcionario) {
+		ModelAndView mv = new ModelAndView("admin/homeTeacher");
+		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
+			String email = autenticado.getName();
+			funcionario = funcionarioRepository.buscarFuncionariEmail(email).get(0);
+		}
+		mv.addObject("funcionario", funcionario);
+		return mv;
+	}
+
 	@GetMapping("/admin/funcionarios/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("admin/funcionarios/lista");

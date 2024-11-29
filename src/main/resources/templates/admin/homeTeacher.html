@@ -1,18 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{admin/fragments/layout}">
+	layout:decorate="~{admin/fragments/layoutPerfil}">
 <head>
-<title>Home</title>
+<title>Perfil</title>
 </head>
 <body>
 
 	<section layout:fragment="corpo" class="layout-content">
-		<div class="container">
-			<div style="height: 500px; line-height: 500px; text-align: center;"
-				class="col-12">
-				<img class="navbar-brand" src="/images/logo.png" loading="lazy"
-					style="max-width: 500px; max-height: 500px;">
-			</div>
+		<div class="page-header">
+			<nav class="navbar navbar-expand-md navbar-top bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav">
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div class="container" id="cadastro">
+			<form action="/cliente/funcionarios/salvar"
+				th:object="${funcionario}" method="POST">
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="nome">Nome</label> <input type="text"
+							class="form-control" id="nome" placeholder="Nome Completo"
+							autofocus="autofocus" th:field="*{nome}" value="" />
+						<div class="invalid-feedback"></div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="email">Email</label> <input type="text"
+							placeholder="Email" class="form-control" th:field="*{email}"
+							id="email" name="email" value="" />
+						<div class="invalid-feedback"></div>
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="senha">Senha</label> <input type="password"
+							class="form-control" id="senha" name="senha" placeholder="Senha"
+							value="" required />
+						<div class="invalid-feedback"></div>
+					</div>
+				</div>
+				<input type="hidden" id="id" th:field="*{id}" value="" />
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
 		</div>
 	</section>
 

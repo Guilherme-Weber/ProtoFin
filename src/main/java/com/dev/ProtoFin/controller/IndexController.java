@@ -26,7 +26,7 @@ public class IndexController {
 		mv.addObject("listaProdutos", produtoRepository.findAll());
 		return mv;
 	}
-	
+
 	@GetMapping("/sobre")
 	public ModelAndView indexSobre() {
 		ModelAndView mv = new ModelAndView("/sobre");

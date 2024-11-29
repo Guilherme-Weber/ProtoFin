@@ -106,20 +106,19 @@ public class CarrinhoController {
 
 		return mv;
 	}
-	
+
 	@GetMapping("/finalizar/confirmarLater")
 	public ModelAndView confirmarCompraLater() {
 		ModelAndView mv = new ModelAndView("/client/mensagemFinalizou");
 
 		buscarUsuarioLogado();
 		calcularTotal();
-		
-		compra.setFuncionario(funcionario);
 
+		compra.setFuncionario(funcionario);
 
 		for (ItensCompra c : itensCompra) {
 			c.setCompra(compra);
-			
+
 		}
 
 		mv.addObject("compra", compra);
