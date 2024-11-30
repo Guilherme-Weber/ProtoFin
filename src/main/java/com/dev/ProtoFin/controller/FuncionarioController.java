@@ -51,7 +51,7 @@ public class FuncionarioController {
 
 	@GetMapping("/professor/funcionarios/cadastrar")
 	public ModelAndView logarprofessor(Funcionario funcionario) {
-		ModelAndView mv = new ModelAndView("admin/homeTeacher");
+		ModelAndView mv = new ModelAndView("admin/professores/cadastro");
 		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
 		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
 			String email = autenticado.getName();
@@ -99,18 +99,33 @@ public class FuncionarioController {
 	}
 
 	@PostMapping("/cliente/funcionarios/salvar")
-	public String salvarCliente(@Valid Funcionario funcionario, BindingResult result) {
+	public ModelAndView salvarCliente(@Valid Funcionario funcionario, BindingResult result) {
 
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
-			return "redirect:/";
+			return cadastrarCliente(funcionario);
 		}
 
 		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
 
 		funcionarioRepository.saveAndFlush(funcionario);
 
-		return "redirect:/";
+		return cadastrarCliente(funcionario);
+	}
+
+	@PostMapping("/professor/funcionarios/salvar")
+	public ModelAndView salvarProfessor(@Valid Funcionario funcionario, BindingResult result) {
+
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return logarprofessor(funcionario);
+		}
+
+		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+
+		funcionarioRepository.saveAndFlush(funcionario);
+
+		return logarprofessor(funcionario);
 	}
 
 }

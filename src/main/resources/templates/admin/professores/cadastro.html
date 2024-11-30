@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{client/fragments/layoutPerfil}">
+	layout:decorate="~{admin/fragments/layoutPerfil}">
 <head>
-<title>Perfil</title>
+<title>Tela do Perfil do Professor</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="container" id="cadastro">
-			<form action="/cliente/funcionarios/salvar"
+			<form action="/professor/funcionarios/salvar"
 				th:object="${funcionario}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-12">

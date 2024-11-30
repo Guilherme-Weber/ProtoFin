@@ -25,7 +25,7 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //		auth.jdbcAuthentication().dataSource(dataSource)
@@ -35,7 +35,7 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 //						"select cliente.email as username, 'cliente' as authority from cliente where cliente.email=?")
 //				.passwordEncoder(new BCryptPasswordEncoder());
 //	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
@@ -48,37 +48,19 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		http
-		.authorizeRequests()
-		.antMatchers("/login").permitAll()
-		.antMatchers("/admin/cadastrar/**").hasAnyAuthority("admin")
-		.antMatchers("/finalizar/**").hasAnyAuthority("cliente")
-		.antMatchers("/mensagemFinalizou/**").hasAnyAuthority("cliente")
-		.antMatchers("/cliente/funcionarios/cadastrar/**").hasAnyAuthority("cliente")
-		.antMatchers("/perfil/cadastro**").hasAnyAuthority("cliente")
-		.antMatchers("/admin/**").hasAnyAuthority("admin", "professor")
-		.antMatchers("/admin/homeTeacher**").hasAnyAuthority("admin", "professor")
-		.antMatchers("/prof**").hasAnyAuthority("admin", "professor")
-		.and()
-		.formLogin()
-		.loginPage("/login")
-		.failureUrl("/login")
-		.loginProcessingUrl("/admin")
-		.defaultSuccessUrl("/")
-		.usernameParameter("username")
-		.passwordParameter("password")
-		.and()
-		.logout()
-		.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
-		.logoutSuccessUrl("/").deleteCookies("JSESSIONID")
-		.and()
-		.exceptionHandling().accessDeniedPage("/")
-		.and()
-		.csrf().disable();
-		
-		
-		
+
+		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/admin/cadastrar/**")
+				.hasAnyAuthority("admin").antMatchers("/finalizar/**").hasAnyAuthority("cliente")
+				.antMatchers("/mensagemFinalizou/**").hasAnyAuthority("cliente")
+				.antMatchers("/cliente/funcionarios/cadastrar/**").hasAnyAuthority("cliente")
+				.antMatchers("/perfil/cadastro**").hasAnyAuthority("cliente").antMatchers("/admin/**")
+				.hasAnyAuthority("admin", "professor").antMatchers("/admin/homeProf**")
+				.hasAnyAuthority("admin", "professor").antMatchers("/prof**").hasAnyAuthority("admin", "professor")
+				.and().formLogin().loginPage("/login").failureUrl("/login").loginProcessingUrl("/admin")
+				.defaultSuccessUrl("/").usernameParameter("username").passwordParameter("password").and().logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout")).logoutSuccessUrl("/")
+				.deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage("/").and().csrf().disable();
+
 //		http.csrf().disable()
 //		.authorizeRequests()
 //		.antMatchers("/finalizar/**").hasAuthority("cliente")
@@ -97,5 +79,5 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 //		.and()
 //		.exceptionHandling().accessDeniedPage("/negado");
 	}
-	
+
 }

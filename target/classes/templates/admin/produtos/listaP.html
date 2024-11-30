@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{admin/fragments/layoutPerfil}">
+<head>
+<title>Modalidades Vinculadas</title>
+</head>
+<body>
+
+	<section layout:fragment="corpo" class="layout-content">
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto" style="padding-top: 15px">
+
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container">
+
+			<div class="col-lg-9">
+
+				<div id="carouselExampleIndicators" class="carousel slide my-4"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
+
+					<a class="carousel-control-prev" href="#carouselExampleIndicators"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-4 col-md-6 mb-4"
+						th:each="produto : ${listaProdutos}">
+						<div class="card h-100">
+							<a href="#"><img class="img-fluid"
+								th:src="@{/mostrarImagem/{imagem}(imagem=${produto.nomeImagem})}"
+								onerror="this.src='images/not_found.png';" /></a>
+							<div class="card-body">
+								<h4 class="card-title">
+									<a href="#"><span th:text="${produto.categoria}"></span></a>
+								</h4>
+								<p class="card-text">
+									<span th:text="${produto.descricao}"></span>
+								</p>
+
+							</div>
+						</div>
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-lg-9 -->
+			</div>
+			<!-- /.row -->
+		</div>
+	</section>
+
+</body>
+</html>

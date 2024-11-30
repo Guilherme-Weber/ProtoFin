@@ -52,14 +52,6 @@
 								th:text="'Nome: ' + ${funcionario.nome}"></span></a></li>
 						<li class="nav-item"><a class="nav-link"> <span
 								th:text="'Email: ' + ${funcionario.email}"></span></a></li>
-						<li class="nav-item"><a class="nav-link" href="/">Home <span
-								class="sr-only">(current)</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/sobre">Sobre</a></li>
-						<li class="nav-item"><a class="nav-link" href="/carrinho">Carrinho</a>
-						<li class="nav-item active"><a class="nav-link"
-							style="text-decoration: underline #59c963"
-							href="/cliente/funcionarios/cadastrar">Perfil</a>
 						<li class="nav-item"><a class="nav-link" href="/admin/logout">Sair</a></li>
 					</ul>
 				</div>
@@ -82,17 +74,17 @@
 					<li
 						style="text-indent: 10px; text-align: center; color: black; background-color: #59c963;"
 						class="nav-item"><a class="nav-link "> <span>Tela
-								do Perfil do Usuário</span>
+								do Perfil do Professor</span>
 					</a></li>
 
 					<li style="text-indent: 10px;" class="nav-item"><a
-						class="nav-link " href="/"> <svg
+						class="nav-link " href="/admin/logout"> <svg
 								style="max-width: 15px; max-height: 15px;"
 								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 								<path
 									d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z" /></svg>
 
-							<span>Voltar para a tela principal</span>
+							<span>Sair da Área do Professor</span>
 					</a></li>
 
 					<li style="text-indent: 10px;" class="nav-item"><a
@@ -104,10 +96,10 @@
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span
 						style="color: black; background-color: #59c963;"
-						class="nav-link active">Pagamentos</span></li>
+						class="nav-link active">Modalidades Vinculadas</span></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/client/pagamentos/listar"> <i class="oi oi-plus"></i> <span>Listar
-						</span>
+						href="/professor/modalidade/listar"> <i class="oi oi-plus"></i>
+							<span>Listar </span>
 					</a></li>
 				</ul>
 

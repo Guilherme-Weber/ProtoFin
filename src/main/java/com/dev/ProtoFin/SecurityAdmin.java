@@ -28,7 +28,7 @@ public class SecurityAdmin extends WebSecurityConfigurerAdapter {
 //						"select funcionario.email as username, papel.nome as authority from permissao inner join funcionario on funcionario.id=permissao.funcionario_id inner join papel on permissao.papel_id=papel.id where funcionario.email=?")
 //				.passwordEncoder(new BCryptPasswordEncoder());
 //	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
@@ -41,7 +41,7 @@ public class SecurityAdmin extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 //		http.csrf().disable()
 //		.authorizeRequests()
 //		.antMatchers("/finalizar/**").hasAuthority("cliente")
@@ -59,7 +59,7 @@ public class SecurityAdmin extends WebSecurityConfigurerAdapter {
 //		.logoutSuccessUrl("/").deleteCookies("JSESSIONID").permitAll()
 //		.and()
 //		.exceptionHandling().accessDeniedPage("/negado");
-		
+
 //		http.csrf().disable()
 //		.authorizeRequests()
 //		.antMatchers("/admin/cadastrar/**").hasAnyAuthority("admin")
