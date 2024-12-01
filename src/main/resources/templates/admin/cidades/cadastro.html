@@ -1,57 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{admin/fragments/layout}">
+<html lang=pt xmlns:layout=http://www.w3.org/1999/xhtml layout:decorate=~{admin/fragments/layout}>
 <head>
 <title>Cadastro de Cidades</title>
 </head>
 <body>
-
-	<section layout:fragment="corpo" class="layout-content">
-		<div class="page-header">
-			<nav class="navbar navbar-expand-md navbar-top bg-light">
-				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-					<ul class="navbar-nav" style="padding-top: 15px">
-						<li class="nav-item active"><i class="oi oi-caret-right"></i>
-							<span>Cadastrar Cidade</span></li>
-					</ul>
-
-					<div class="container" style="text-align: right;">
-						<a class="btn btn-success btn-md" href="/admin/cidades/listar"
-							role="button"> <span class="oi oi-spreadsheet"
-							title="Cadastro" aria-hidden="true"></span> <span>Listar
-								Cidade</span>
-						</a>
-					</div>
-				</div>
-			</nav>
-		</div>
-
-		<div class="container" id="cadastro">
-			<form action="/admin/cidades/salvar" th:object="${cidade}"
-				method="POST">
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="nome">Nome do Cidade</label> <input type="text"
-							class="form-control" id="nome" placeholder="Nome do Cidade"
-							autofocus="autofocus" th:field="*{nome}" value="" />
-						<div class="invalid-feedback"></div>
-					</div>
-
-					<div class="form-group col-md-6">
-						<label for="salario">Estado</label> <select th:field="*{estado}"
-							class="form-control">
-							<option th:each="estado:${listaEstados}" th:value="${estado.id}"
-								th:text="${estado.nome}"></option>
-						</select>
-
-					</div>
-				</div>
-
-				<input type="hidden" id="id" th:field="*{id}" value="" />
-				<button type="submit" class="btn btn-success btn-sm">Salvar</button>
-			</form>
-		</div>
-	</section>
-
+<section layout:fragment=corpo class=layout-content>
+<div class=page-header>
+<nav class="navbar navbar-expand-md navbar-top bg-light">
+<div class="collapse navbar-collapse" id=navbarsExampleDefault>
+<ul class=navbar-nav style=padding-top:15px>
+<li class="nav-item active"><i class="oi oi-caret-right"></i>
+<span>Cadastrar Cidade</span></li>
+</ul>
+<div class=container style=text-align:right>
+<a class="btn btn-success btn-md" href=/admin/cidades/listar role=button> <span class="oi oi-spreadsheet" title=Cadastro aria-hidden=true></span> <span>Listar
+Cidade</span>
+</a>
+</div>
+</div>
+</nav>
+</div>
+<div class=container id=cadastro>
+<form action=/admin/cidades/salvar th:object=${cidade} method=POST>
+<div class=form-row>
+<div class="form-group col-md-6">
+<label for=nome>Nome do Cidade</label> <input type=text class=form-control id=nome placeholder="Nome do Cidade" autofocus=autofocus th:field=*{nome} value />
+<div class=invalid-feedback></div>
+</div>
+<div class="form-group col-md-6">
+<label for=salario>Estado</label> <select th:field=*{estado} class=form-control>
+<option th:each=estado:${listaEstados} th:value=${estado.id} th:text=${estado.nome}></option>
+</select>
+</div>
+</div>
+<input type=hidden id=id th:field=*{id} value />
+<button type=submit class="btn btn-success btn-sm">Salvar</button>
+</form>
+</div>
+</section>
 </body>
 </html>

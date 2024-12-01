@@ -1,59 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{admin/fragments/layout}">
+<html lang=pt xmlns:layout=http://www.w3.org/1999/xhtml layout:decorate=~{admin/fragments/layout}>
 <head>
 <title>Cadastro de Permissões</title>
 </head>
 <body>
-
-	<section layout:fragment="corpo" class="layout-content">
-		<div class="page-header">
-			<nav class="navbar navbar-expand-md navbar-top bg-light">
-				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-					<ul class="navbar-nav" style="padding-top: 15px">
-						<li class="nav-item active"><i class="oi oi-caret-right"></i>
-							<span>Cadastrar Permissão dos Funcionários</span></li>
-					</ul>
-
-					<div class="container" style="text-align: right;">
-						<a class="btn btn-success btn-md" href="/admin/permissoes/listar"
-							role="button"> <span class="oi oi-spreadsheet"
-							title="Cadastro" aria-hidden="true"></span> <span>Listar
-								Permissão</span>
-						</a>
-					</div>
-				</div>
-			</nav>
-		</div>
-
-		<div class="container" id="cadastro">
-			<form action="/admin/permissoes/salvar" th:object="${permissao}"
-				method="POST">
-				<div class="form-row">
-
-					<div class="form-group col-md-6">
-						<label>Funcionario</label> <select th:field="*{funcionario}"
-							class="form-control">
-							<option th:each="fun:${listaFuncionarios}" th:value="${fun.id}"
-								th:text="${fun.nome}"></option>
-						</select>
-					</div>
-
-					<div class="form-group col-md-6">
-						<label>Pepel</label> <select th:field="*{papel}"
-							class="form-control">
-							<option th:each="papel:${listaPapeis}" th:value="${papel.id}"
-								th:text="${papel.nome}"></option>
-						</select>
-					</div>
-
-				</div>
-
-				<input type="hidden" id="id" th:field="*{id}" value="" />
-				<button type="submit" class="btn btn-success btn-sm">Salvar</button>
-			</form>
-		</div>
-	</section>
-
+<section layout:fragment=corpo class=layout-content>
+<div class=page-header>
+<nav class="navbar navbar-expand-md navbar-top bg-light">
+<div class="collapse navbar-collapse" id=navbarsExampleDefault>
+<ul class=navbar-nav style=padding-top:15px>
+<li class="nav-item active"><i class="oi oi-caret-right"></i>
+<span>Cadastrar Permissão dos Funcionários</span></li>
+</ul>
+<div class=container style=text-align:right>
+<a class="btn btn-success btn-md" href=/admin/permissoes/listar role=button> <span class="oi oi-spreadsheet" title=Cadastro aria-hidden=true></span> <span>Listar
+Permissão</span>
+</a>
+</div>
+</div>
+</nav>
+</div>
+<div class=container id=cadastro>
+<form action=/admin/permissoes/salvar th:object=${permissao} method=POST>
+<div class=form-row>
+<div class="form-group col-md-6">
+<label>Funcionario</label> <select th:field=*{funcionario} class=form-control>
+<option th:each=fun:${listaFuncionarios} th:value=${fun.id} th:text=${fun.nome}></option>
+</select>
+</div>
+<div class="form-group col-md-6">
+<label>Pepel</label> <select th:field=*{papel} class=form-control>
+<option th:each=papel:${listaPapeis} th:value=${papel.id} th:text=${papel.nome}></option>
+</select>
+</div>
+</div>
+<input type=hidden id=id th:field=*{id} value />
+<button type=submit class="btn btn-success btn-sm">Salvar</button>
+</form>
+</div>
+</section>
 </body>
 </html>

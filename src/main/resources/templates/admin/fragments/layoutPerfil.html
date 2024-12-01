@@ -1,128 +1,83 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang=pt-br xmlns=http://www.w3.org/1999/xhtml xmlns:th=http://www.thymeleaf.org xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout>
 <head>
 <title>VivaEscola</title>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<link rel="icon" href="/image/favicon.png" />
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap core CSS -->
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
-
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet"
-	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-	crossorigin="anonymous">
-
-<!-- Custom styles for this template -->
-<link href="/css/style.css" rel="stylesheet" />
-
-<link href="css/shop-homepage.css" rel="stylesheet">
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<meta charset=UTF-8 />
+<meta http-equiv=X-UA-Compatible content="IE=edge" />
+<meta name=viewport content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name=description content />
+<meta name=author content />
+<link rel=icon href=/image/favicon.png />
+<script src=https://code.jquery.com/jquery-3.1.1.min.js></script>
+<link href=/webjars/bootstrap/css/bootstrap.min.css rel=stylesheet />
+<link href=/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css rel=stylesheet />
+<link href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
+<link href=/css/style.css rel=stylesheet />
+<link href=css/shop-homepage.css rel=stylesheet>
+<link href=vendor/bootstrap/css/bootstrap.min.css rel=stylesheet>
 </head>
 <body>
-	<header>
-		<!-- Navigation -->
-		<nav style="padding-bottom: 5px"
-			class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-			<div class="container">
-
-				<a href="/"><img class="navbar-brand" src="/images/logo.png"
-					loading="lazy" style="max-width: 50px; max-height: 50px;"></a> <a
-					class="navbar-brand" href="/" style="color: #59c963">
-					VivaEscola</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link"> <span
-								th:text="'Nome: ' + ${funcionario.nome}"></span></a></li>
-						<li class="nav-item"><a class="nav-link"> <span
-								th:text="'Email: ' + ${funcionario.email}"></span></a></li>
-						<li class="nav-item"><a class="nav-link" href="/admin/logout">Sair</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<div class="layout-main">
-		<aside>
-			<nav class="sidebar sidebar-open"
-				style="display: inline-flex; flex-direction: column; text-indent: 10px;">
-
-
-				<ul class="nav nav-pills">
-					<li style="text-indent: 10px;" class="nav-item"><a
-						class="nav-link " href="/"> <i></i> <span></span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li
-						style="text-indent: 10px; text-align: center; color: black; background-color: #59c963;"
-						class="nav-item"><a class="nav-link "> <span>Tela
-								do Perfil do Professor</span>
-					</a></li>
-
-					<li style="text-indent: 10px;" class="nav-item"><a
-						class="nav-link " href="/admin/logout"> <svg
-								style="max-width: 15px; max-height: 15px;"
-								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path
-									d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z" /></svg>
-
-							<span>Sair da Área do Professor</span>
-					</a></li>
-
-					<li style="text-indent: 10px;" class="nav-item"><a
-						class="nav-link "> <a href="/images/pdf/Calendario.pdf"
-							target=”_blank”><span>Calendário</span></a>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span
-						style="color: black; background-color: #59c963;"
-						class="nav-link active">Modalidades Vinculadas</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/professor/modalidade/listar"> <i class="oi oi-plus"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul>
-
-			</nav>
-		</aside>
-
-		<!-- Page Content -->
-		<div class="container" layout:fragment="corpo"></div>
-		<!-- /.container -->
-	</div>
-	<!-- Footer -->
-	<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; 2024 VivaEscola | v0.1 </span>
-		</div>
-	</footer>
-
-	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<header>
+<nav style=padding-bottom:5px class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class=container>
+<a href=/><img class=navbar-brand src=/images/logo.png loading=lazy style=max-width:50px;max-height:50px></a> <a class=navbar-brand href=/ style=color:#59c963>
+VivaEscola</a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarResponsive aria-controls=navbarResponsive aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarResponsive>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item><a class=nav-link> <span th:text="'Nome: ' + ${funcionario.nome}"></span></a></li>
+<li class=nav-item><a class=nav-link> <span th:text="'Email: ' + ${funcionario.email}"></span></a></li>
+<li class=nav-item><a class=nav-link href=/admin/logout>Sair</a></li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<div class=layout-main>
+<aside>
+<nav class="sidebar sidebar-open" style=display:inline-flex;flex-direction:column;text-indent:10px>
+<ul class="nav nav-pills">
+<li style=text-indent:10px class=nav-item><a class=nav-link href=/> <i></i> <span></span>
+</a></li>
+</ul>
+<ul class="nav nav-pills">
+<li style=text-indent:10px;text-align:center;color:black;background-color:#59c963 class=nav-item><a class=nav-link> <span>Tela
+do Perfil do Professor</span>
+</a></li>
+<li style=text-indent:10px class=nav-item><a class=nav-link href=/admin/logout> <svg style=max-width:15px;max-height:15px xmlns=http://www.w3.org/2000/svg viewBox="0 0 512 512">
+<path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z" /></svg>
+<span>Sair da Área do Professor</span>
+</a></li>
+<li style=text-indent:10px class=nav-item><a class=nav-link> <a href=/images/pdf/Calendario.pdf target=”_blank”><span>Calendário</span></a>
+</a></li>
+</ul>
+<ul class="nav nav-pills">
+<li class=nav-item><span style=color:black;background-color:#59c963 class="nav-link active">Modalidades Vinculadas</span></li>
+<li class=nav-item><a class=nav-link href=/professor/modalidade/listar> <i class="oi oi-plus"></i>
+<span>Listar </span>
+</a></li>
+</ul>
+<ul class="nav nav-pills">
+<li class=nav-item><span style=color:black;background-color:#59c963 class="nav-link active">Editar Perfil</span></li>
+<li class=nav-item><a class=nav-link href=/professor/modalidade/listar> <i class="oi oi-plus"></i>
+<span>Listar </span>
+</a></li>
+</ul>
+</nav>
+</aside>
+<div class=container layout:fragment=corpo></div>
+</div>
+<footer class=layout-footer>
+<div class=container>
+<span class=footer-copy>&copy; 2024 VivaEscola | v0.1 </span>
+</div>
+</footer>
+<script src=vendor/jquery/jquery.min.js></script>
+<script src=vendor/bootstrap/js/bootstrap.bundle.min.js></script>
+<script src=/webjars/jquery-mask-plugin/dist/jquery.mask.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js></script>
+<script src=/webjars/bootstrap/js/bootstrap.min.js></script>
 </body>
 </html>

@@ -1,115 +1,92 @@
 <!DOCTYPE HTML>
-<html xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{client/fragments/layoutNegativo}">
+<html xmlns:layout=http://www.w3.org/1999/xhtml layout:decorate=~{client/fragments/layoutNegativo}>
 <head>
 <title>Finalizar a Reserva</title>
 </head>
 <body>
-	<!-- Page Content -->
-	<div class="container" layout:fragment="corpo">
-
-		<form action="/finalizar/confirmar" method="post">
-
-			<div class="row">
-				<div class="col-12">
-					<h3></h3>
-					<div class="row">
-						<div style="text-align: center;" class="col-6">
-							<h3>
-								<span th:text="'Nome: ' + ${funcionario.nome}"></span>
-							</h3>
-						</div>
-						<div style="text-align: center;" class="col-6">
-							<h3>
-								<span th:text="'Email: ' + ${funcionario.email}"></span>
-							</h3>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12">
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th scope="col">Imagem</th>
-									<th scope="col">Produto</th>
-									<th scope="col"></th>
-									<th></th>
-									<th scope="col" class="text-center">Quantidade</th>
-									<th scope="col" class="text-right">Valor Unitário</th>
-									<th scope="col" class="text-right">Valor Total</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="item : ${listaItens}">
-									<td><img
-										th:src="@{/mostrarImagem/{imagem}(imagem=${item.produto.nomeImagem})}"
-										style="max-width: 50px; max-height: 50px;" /></td>
-									<td th:text="${item.produto.descricao}"></td>
-									<td></td>
-									<td class="text-right"></td>
-									<td class="text-center" th:text="${item.quantidade}"></td>
-
-									<td class="text-right"
-										th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}">R$</td>
-									<td class="text-right"
-										th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
-
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td><strong>Total</strong></td>
-									<td class="text-right"><strong><span
-											th:text="'R$' + ${#numbers.formatDecimal(compra.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span></strong></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-				</div>
-				<div class="col-12">
-					<h3></h3>
-					<div class="row">
-						<div style="text-align: center; padding-bottom: 10px;"
-							class="col-6">
-							<h3>
-								<span>Forma de Pagamento:</span>
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div style="padding-bottom: 10px" class="col-6">
-					<select class="form-control" name="formaPagamento">
-						<option value="Cartão de Crédito">Cartão de Crédito</option>
-						<option value="Cartão de Débito">Cartão de Débito</option>
-						<option value="Boleto">Boleto</option>
-						<option selected="selected" value="PIX">PIX</option>
-					</select>
-				</div>
-
-				<div class="col mb-2">
-					<div class="row">
-
-						<div class="col-sm-12 col-md-12 text-right">
-							<button class="btn btn-lg btn-block btn-success text-uppercase">Confirmar
-								a Reserva</button>
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /.row -->
-
-		</form>
-	</div>
-	<!-- /.container -->
-
+<div class=container layout:fragment=corpo>
+<form action=/finalizar/confirmar method=post>
+<div class=row>
+<div class=col-12>
+<h3></h3>
+<div class=row>
+<div style=text-align:center class=col-6>
+<h3>
+<span th:text="'Nome: ' + ${funcionario.nome}"></span>
+</h3>
+</div>
+<div style=text-align:center class=col-6>
+<h3>
+<span th:text="'Email: ' + ${funcionario.email}"></span>
+</h3>
+</div>
+</div>
+</div>
+<div class=col-12>
+<div class=table-responsive>
+<table class="table table-striped">
+<thead>
+<tr>
+<th scope=col>Imagem</th>
+<th scope=col>Produto</th>
+<th scope=col></th>
+<th></th>
+<th scope=col class=text-center>Quantidade</th>
+<th scope=col class=text-right>Valor Unitário</th>
+<th scope=col class=text-right>Valor Total</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="item : ${listaItens}">
+<td><img th:src="@{/mostrarImagem/{imagem}(imagem=${item.produto.nomeImagem})}" style=max-width:50px;max-height:50px /></td>
+<td th:text=${item.produto.descricao}></td>
+<td></td>
+<td class=text-right></td>
+<td class=text-center th:text=${item.quantidade}></td>
+<td class=text-right th:text="'R$' + ${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}">R$</td>
+<td class=text-right th:text="'R$' + ${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}">R$</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>Total</strong></td>
+<td class=text-right><strong><span th:text="'R$' + ${#numbers.formatDecimal(compra.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span></strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class=col-12>
+<h3></h3>
+<div class=row>
+<div style=text-align:center;padding-bottom:10px class=col-6>
+<h3>
+<span>Forma de Pagamento:</span>
+</h3>
+</div>
+</div>
+</div>
+<div style=padding-bottom:10px class=col-6>
+<select class=form-control name=formaPagamento>
+<option value="Cartão de Crédito">Cartão de Crédito</option>
+<option value="Cartão de Débito">Cartão de Débito</option>
+<option value=Boleto>Boleto</option>
+<option selected=selected value=PIX>PIX</option>
+</select>
+</div>
+<div class="col mb-2">
+<div class=row>
+<div class="col-sm-12 col-md-12 text-right">
+<button class="btn btn-lg btn-block btn-success text-uppercase">Confirmar
+a Reserva</button>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
 </body>
-
 </html>
