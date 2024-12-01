@@ -21,21 +21,6 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.jdbcAuthentication().dataSource(dataSource)
-//				.usersByUsernameQuery(
-//						"select email as username, senha as password, 1 as enable from cliente where email=?")
-//				.authoritiesByUsernameQuery(
-//						"select cliente.email as username, 'cliente' as authority from cliente where cliente.email=?")
-//				.passwordEncoder(new BCryptPasswordEncoder());
-//	}
-
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
@@ -61,23 +46,11 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout")).logoutSuccessUrl("/")
 				.deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage("/").and().csrf().disable();
 
-//		http.csrf().disable()
-//		.authorizeRequests()
-//		.antMatchers("/finalizar/**").hasAuthority("cliente")
-//		.and()
-//		.formLogin()	
-//		.loginPage("/clientes/cadastrar").permitAll()
-//		.failureUrl("/clientes/cadastrar")
-//		.loginProcessingUrl("/finalizar/login")
-//		.defaultSuccessUrl("/finalizar")
-//			.usernameParameter("username")
-//			.passwordParameter("password")
-//		.and()
-//		.logout()
-//		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//		.logoutSuccessUrl("/").deleteCookies("JSESSIONID").permitAll()
-//		.and()
-//		.exceptionHandling().accessDeniedPage("/negado");
+	}
+
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 }

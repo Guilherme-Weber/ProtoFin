@@ -28,18 +28,18 @@ public class EstadoController {
 		return mv;
 	}
 
+	@GetMapping("/admin/estados/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		Optional<Estado> estado = estadoRepository.findById(id);
+		return cadastrar(estado.get());
+	}
+
 	@GetMapping("/admin/estados/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("admin/estados/lista");
 		mv.addObject("listaEstados", estadoRepository.findAll());
 
 		return mv;
-	}
-
-	@GetMapping("/admin/estados/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Estado> estado = estadoRepository.findById(id);
-		return cadastrar(estado.get());
 	}
 
 	@GetMapping("/admin/estados/remover/{id}")

@@ -39,18 +39,18 @@ public class ProdutoController {
 		return mv;
 	}
 
+	@GetMapping("/admin/produtos/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		Optional<Produto> produto = produtoRepository.findById(id);
+		return cadastrar(produto.get());
+	}
+
 	@GetMapping("/admin/produtos/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("admin/produtos/lista");
 		mv.addObject("listaProdutos", produtoRepository.findAll());
 
 		return mv;
-	}
-
-	@GetMapping("/admin/produtos/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Produto> produto = produtoRepository.findById(id);
-		return cadastrar(produto.get());
 	}
 
 	@GetMapping("/admin/produtos/remover/{id}")

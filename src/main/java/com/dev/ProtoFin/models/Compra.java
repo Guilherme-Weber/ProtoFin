@@ -35,52 +35,62 @@ public class Compra implements Serializable {
 
 	private Double valorTotal = 0.;
 
+	private String gone;
+
 	public Compra() {
 		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
 	public Date getDataCompra() {
 		return dataCompra;
-	}
-
-	public void setDataCompra(Date dataCompra) {
-		this.dataCompra = dataCompra;
 	}
 
 	public String getFormaPagamento() {
 		return formaPagamento;
 	}
 
-	public void setFormaPagamento(String formaPagamento) {
-		this.formaPagamento = formaPagamento;
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public String getGone() {
+		return gone;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public Double getValorTotal() {
 		return valorTotal;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public void setDataCompra(Date dataCompra) {
+		this.dataCompra = dataCompra;
+	}
+
+	public void setFormaPagamento(String formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public void setGone(String gone) {
+		this.gone = gone;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setValorTotal(Double valorTotal) {

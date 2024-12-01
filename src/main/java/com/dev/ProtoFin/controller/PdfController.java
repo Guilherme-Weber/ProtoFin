@@ -19,7 +19,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PdfController {
 
-	private static String caminhoPdf = "C:\\Users\\guilw\\eclipse-workspace-new\\ProtoFin\\src\\main\\resources\\static\\images\\pdf";
+	private static String caminhoPdf = "C:\\Users\\guilw\\eclipse-workspace-new\\ProtoFin\\src\\main\\resources\\static\\images\\pdf\\";
+
+	@GetMapping("/file")
+	public ResponseEntity<InputStreamResource> getFile() throws IOException {
+		try (FileInputStream fileInputStream = new FileInputStream(caminhoPdf)) {
+			InputStreamResource inputStreamResource = new InputStreamResource(fileInputStream);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentLength(Files.size(Paths.get(caminhoPdf)));// optional
+			return new ResponseEntity(inputStreamResource, headers, HttpStatus.OK);
+		}
+	}
 
 	// todo: colocar limite de apenas imagens, e colocar um
 	// tamanho limite tbm
@@ -35,15 +45,5 @@ public class PdfController {
 			return PdfArquivo.toURI();
 		}
 		return null;
-	}
-
-	@GetMapping("/file")
-	public ResponseEntity<InputStreamResource> getFile() throws IOException {
-		try (FileInputStream fileInputStream = new FileInputStream(caminhoPdf)) {
-			InputStreamResource inputStreamResource = new InputStreamResource(fileInputStream);
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentLength(Files.size(Paths.get(caminhoPdf)));// optional
-			return new ResponseEntity(inputStreamResource, headers, HttpStatus.OK);
-		}
 	}
 }

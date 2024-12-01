@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt xmlns:layout=http://www.w3.org/1999/xhtml layout:decorate=~{admin/fragments/layout}>
 <head>
-<title>Cadastro de Papeis</title>
+<title>Cadastro de Funções</title>
 </head>
 <body>
 <section layout:fragment=corpo class=layout-content>
@@ -10,11 +10,11 @@
 <div class="collapse navbar-collapse" id=navbarsExampleDefault>
 <ul class=navbar-nav style=padding-top:15px>
 <li class="nav-item active"><i class="oi oi-caret-right"></i>
-<span>Cadastrar Papel</span></li>
+<span>Cadastrar Funções</span></li>
 </ul>
 <div class=container style=text-align:right>
 <a class="btn btn-success btn-md" href=/admin/papeis/listar role=button> <span class="oi oi-spreadsheet" title=Cadastro aria-hidden=true></span> <span>Listar
-Papeis</span>
+Funções</span>
 </a>
 </div>
 </div>
@@ -24,7 +24,7 @@ Papeis</span>
 <form action=/admin/papeis/salvar th:object=${papel} method=POST>
 <div class=form-row>
 <div class="form-group col-md-12">
-<label for=nome>Nome do Papel</label> <input type=text class=form-control id=nome placeholder="Nome do Papel" autofocus=autofocus th:field=*{nome} value />
+<label for=nome>Nome da Função</label> <input type=text class=form-control id=nome placeholder="Nome do Função" autofocus=autofocus th:field=*{nome} value />
 <div class=invalid-feedback></div>
 </div>
 </div>

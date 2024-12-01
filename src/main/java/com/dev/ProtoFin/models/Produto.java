@@ -34,60 +34,60 @@ public class Produto implements Serializable {
 		super();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public String getCategoria() {
+		return categoria;
 	}
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Double getValorVenda() {
-		return valorVenda;
-	}
-
-	public void setValorVenda(Double valorVenda) {
-		this.valorVenda = valorVenda;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public Long getId() {
+		return id;
 	}
 
 	public String getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public String getNomeImagem() {
+		return nomeImagem;
 	}
 
 	public Double getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEstoque(Double quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
+	public Double getValorVenda() {
+		return valorVenda;
 	}
 
-	public String getNomeImagem() {
-		return nomeImagem;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 
 	public void setNomeImagem(String nomeImagem) {
 		this.nomeImagem = nomeImagem;
+	}
+
+	public void setQuantidadeEstoque(Double quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
+
+	public void setValorVenda(Double valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 
 }

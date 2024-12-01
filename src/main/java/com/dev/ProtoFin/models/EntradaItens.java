@@ -35,48 +35,48 @@ public class EntradaItens implements Serializable {
 		super();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public EntradaProduto getEntrada() {
 		return entrada;
 	}
 
-	public void setEntrada(EntradaProduto entrada) {
-		this.entrada = entrada;
+	public Long getId() {
+		return id;
 	}
 
 	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public Double getQuantidade() {
 		return quantidade;
-	}
-
-	public void setQuantidade(Double quantidade) {
-		this.quantidade = quantidade;
 	}
 
 	public Double getValorProduto() {
 		return valorProduto;
 	}
 
-	public void setValorProduto(Double valorProduto) {
-		this.valorProduto = valorProduto;
-	}
-
 	public Double getValorVenda() {
 		return valorVenda;
+	}
+
+	public void setEntrada(EntradaProduto entrada) {
+		this.entrada = entrada;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public void setQuantidade(Double quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void setValorProduto(Double valorProduto) {
+		this.valorProduto = valorProduto;
 	}
 
 	public void setValorVenda(Double valorVenda) {

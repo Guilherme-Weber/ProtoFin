@@ -32,6 +32,18 @@ public class PrimaryController {
 		return "admin/home";
 	}
 
+	@GetMapping("/prof")
+	public ModelAndView acessarProfessor() {
+		ModelAndView mv = new ModelAndView("/admin/professores/cadastro");
+		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
+			String email = autenticado.getName();
+			funcionario = funcionarioRepository.buscarFuncionariEmail(email).get(0);
+		}
+		mv.addObject("funcionario", funcionario);
+		return mv;
+	}
+
 	@GetMapping("/professor/modalidade/listar")
 	public ModelAndView index1() {
 		ModelAndView mv = new ModelAndView("/admin/produtos/listaP");
@@ -42,9 +54,9 @@ public class PrimaryController {
 		}
 		mv.addObject("funcionario", funcionario);
 
-		List<Produto> produto = new ArrayList<Produto>();
+		List<Produto> produto = new ArrayList<>();
 
-		List<Produto> produtoTrue = new ArrayList<Produto>();
+		List<Produto> produtoTrue = new ArrayList<>();
 
 		produto = produtoRepository.findAll();
 
@@ -59,18 +71,6 @@ public class PrimaryController {
 		}
 
 		mv.addObject("listaProdutos", produtoTrue);
-		return mv;
-	}
-
-	@GetMapping("/prof")
-	public ModelAndView acessarProfessor() {
-		ModelAndView mv = new ModelAndView("/admin/professores/cadastro");
-		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
-		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
-			String email = autenticado.getName();
-			funcionario = funcionarioRepository.buscarFuncionariEmail(email).get(0);
-		}
-		mv.addObject("funcionario", funcionario);
 		return mv;
 	}
 

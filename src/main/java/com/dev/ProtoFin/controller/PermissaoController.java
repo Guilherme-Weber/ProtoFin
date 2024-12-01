@@ -38,18 +38,18 @@ public class PermissaoController {
 		return mv;
 	}
 
+	@GetMapping("/admin/permissoes/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		Optional<Permissao> permissao = permissaoRepository.findById(id);
+		return cadastrar(permissao.get());
+	}
+
 	@GetMapping("/admin/permissoes/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("admin/permissoes/lista");
 		mv.addObject("listaPermissoes", permissaoRepository.findAll());
 
 		return mv;
-	}
-
-	@GetMapping("/admin/permissoes/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Permissao> permissao = permissaoRepository.findById(id);
-		return cadastrar(permissao.get());
 	}
 
 	@GetMapping("/admin/permissoes/remover/{id}")

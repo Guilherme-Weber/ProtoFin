@@ -28,28 +28,28 @@ public class Cidade implements Serializable {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getId() {
+		return id;
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override

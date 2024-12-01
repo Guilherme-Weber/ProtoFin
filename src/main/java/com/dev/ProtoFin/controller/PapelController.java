@@ -28,18 +28,18 @@ public class PapelController {
 		return mv;
 	}
 
+	@GetMapping("/admin/papeis/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		Optional<Papel> papel = papelRepository.findById(id);
+		return cadastrar(papel.get());
+	}
+
 	@GetMapping("/admin/papeis/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("admin/papeis/lista");
 		mv.addObject("listaPapeis", papelRepository.findAll());
 
 		return mv;
-	}
-
-	@GetMapping("/admin/papeis/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Papel> papel = papelRepository.findById(id);
-		return cadastrar(papel.get());
 	}
 
 	@GetMapping("/admin/papeis/remover/{id}")

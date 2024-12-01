@@ -33,18 +33,18 @@ public class CidadeController {
 		return mv;
 	}
 
+	@GetMapping("/admin/cidades/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		Optional<Cidade> cidade = cidadeRepository.findById(id);
+		return cadastrar(cidade.get());
+	}
+
 	@GetMapping("/admin/cidades/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("admin/cidades/lista");
 		mv.addObject("listaCidades", cidadeRepository.findAll());
 
 		return mv;
-	}
-
-	@GetMapping("/admin/cidades/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Cidade> cidade = cidadeRepository.findById(id);
-		return cadastrar(cidade.get());
 	}
 
 	@GetMapping("/admin/cidades/remover/{id}")

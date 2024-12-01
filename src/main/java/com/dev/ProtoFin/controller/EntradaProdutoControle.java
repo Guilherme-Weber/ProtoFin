@@ -21,7 +21,7 @@ import com.dev.ProtoFin.repository.ProdutoRepository;
 @Controller
 public class EntradaProdutoControle {
 
-	private List<EntradaItens> listaEntrada = new ArrayList<EntradaItens>();
+	private List<EntradaItens> listaEntrada = new ArrayList<>();
 
 	@Autowired
 	private EntradaProdutoRepository entradaProdutoRepository;

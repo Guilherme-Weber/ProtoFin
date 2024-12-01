@@ -26,7 +26,7 @@ import com.dev.ProtoFin.repository.ProdutoRepository;
 @Controller
 public class CarrinhoController {
 
-	private List<ItensCompra> itensCompra = new ArrayList<ItensCompra>();
+	private List<ItensCompra> itensCompra = new ArrayList<>();
 
 	private Compra compra = new Compra();
 
@@ -44,16 +44,58 @@ public class CarrinhoController {
 	@Autowired
 	private ItensCompraRepository itensCompraRepository;
 
-	@GetMapping("/carrinho")
-	public ModelAndView chamarCarrinho() {
-		ModelAndView mv = new ModelAndView("/client/carrinho");
+	@GetMapping("/adicionarCarrinho/{id}")
+	public String adicionarCarrinho(@PathVariable Long id) {
+//		System.out.println("ID do Produto " + id);
 
-		calcularTotal();
-		// System.out.println(compra.getValorTotal());
+		Optional<Produto> prod = produtoRepository.findById(id);
+		Produto produto = prod.get();
 
-		mv.addObject("compra", compra);
-		mv.addObject("listaItens", itensCompra);
-		return mv;
+		int controle = 0;
+
+		for (ItensCompra it : itensCompra) {
+
+			if (it.getProduto().getId().equals(produto.getId())) { // madness
+				it.setQuantidade(it.getQuantidade() + 1);
+				it.setValorTotal(it.getQuantidade() * it.getValorUnitario());
+				controle = 1;
+				break;
+			}
+		}
+		if (controle == 0) {
+			ItensCompra item = new ItensCompra();
+			item.setProduto(produto);
+			item.setValorUnitario(produto.getValorVenda());
+			item.setQuantidade(item.getQuantidade() + 1);
+			item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
+
+			itensCompra.add(item);
+		}
+
+		return "redirect:/carrinho";
+	}
+
+	@GetMapping("/alterarQuantidade/{id}/{acao}")
+	public String alterarCarrinho(@PathVariable Long id, @PathVariable Integer acao) {
+
+		for (ItensCompra it : itensCompra) {
+			if (it.getProduto().getId().equals(id)) { // madness
+
+				if (acao.equals(1)) {
+					it.setQuantidade(it.getQuantidade() + 1);
+					it.setValorTotal(it.getQuantidade() * it.getValorUnitario());
+				} else if (acao == 0) {
+					it.setQuantidade(it.getQuantidade() - 1);
+					it.setValorTotal(it.getQuantidade() * it.getValorUnitario());
+					if (it.getQuantidade() == 0 || it.getQuantidade() < 0) {
+						itensCompra.remove(it);
+					}
+				}
+				break;
+			}
+		}
+
+		return "redirect:/carrinho";
 	}
 
 	private void buscarUsuarioLogado() {
@@ -64,25 +106,23 @@ public class CarrinhoController {
 		}
 	}
 
-	@GetMapping("/finalizar")
-	public ModelAndView finalizarCompra() {
-		buscarUsuarioLogado();
-
-		ModelAndView mv = new ModelAndView("/client/finalizar");
-
-		calcularTotal();
-
-		mv.addObject("compra", compra);
-		mv.addObject("listaItens", itensCompra);
-		mv.addObject("funcionario", funcionario);
-		return mv;
-	}
-
 	private void calcularTotal() {
 		compra.setValorTotal(0.);
 		for (ItensCompra it : itensCompra) {
 			compra.setValorTotal(compra.getValorTotal() + it.getValorTotal());
 		}
+	}
+
+	@GetMapping("/carrinho")
+	public ModelAndView chamarCarrinho() {
+		ModelAndView mv = new ModelAndView("/client/carrinho");
+
+		calcularTotal();
+		// System.out.println(compra.getValorTotal());
+
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra);
+		return mv;
 	}
 
 	@PostMapping("/finalizar/confirmar")
@@ -130,6 +170,20 @@ public class CarrinhoController {
 		return mv;
 	}
 
+	@GetMapping("/finalizar")
+	public ModelAndView finalizarCompra() {
+		buscarUsuarioLogado();
+
+		ModelAndView mv = new ModelAndView("/client/finalizar");
+
+		calcularTotal();
+
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra);
+		mv.addObject("funcionario", funcionario);
+		return mv;
+	}
+
 	@GetMapping("/finalizar/finalizarForReal")
 	public String finalizarCompraEnd() {
 
@@ -148,60 +202,6 @@ public class CarrinhoController {
 				itensCompra.remove(it);
 				break;
 			}
-		}
-
-		return "redirect:/carrinho";
-	}
-
-	@GetMapping("/alterarQuantidade/{id}/{acao}")
-	public String alterarCarrinho(@PathVariable Long id, @PathVariable Integer acao) {
-
-		for (ItensCompra it : itensCompra) {
-			if (it.getProduto().getId().equals(id)) { // madness
-
-				if (acao.equals(1)) {
-					it.setQuantidade(it.getQuantidade() + 1);
-					it.setValorTotal(it.getQuantidade() * it.getValorUnitario());
-				} else if (acao == 0) {
-					it.setQuantidade(it.getQuantidade() - 1);
-					it.setValorTotal(it.getQuantidade() * it.getValorUnitario());
-					if (it.getQuantidade() == 0 || it.getQuantidade() < 0) {
-						itensCompra.remove(it);
-					}
-				}
-				break;
-			}
-		}
-
-		return "redirect:/carrinho";
-	}
-
-	@GetMapping("/adicionarCarrinho/{id}")
-	public String adicionarCarrinho(@PathVariable Long id) {
-//		System.out.println("ID do Produto " + id);
-
-		Optional<Produto> prod = produtoRepository.findById(id);
-		Produto produto = prod.get();
-
-		int controle = 0;
-
-		for (ItensCompra it : itensCompra) {
-
-			if (it.getProduto().getId().equals(produto.getId())) { // madness
-				it.setQuantidade(it.getQuantidade() + 1);
-				it.setValorTotal(it.getQuantidade() * it.getValorUnitario());
-				controle = 1;
-				break;
-			}
-		}
-		if (controle == 0) {
-			ItensCompra item = new ItensCompra();
-			item.setProduto(produto);
-			item.setValorUnitario(produto.getValorVenda());
-			item.setQuantidade(item.getQuantidade() + 1);
-			item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
-
-			itensCompra.add(item);
 		}
 
 		return "redirect:/carrinho";

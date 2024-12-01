@@ -49,16 +49,10 @@ public class FuncionarioController {
 		return mv;
 	}
 
-	@GetMapping("/professor/funcionarios/cadastrar")
-	public ModelAndView logarprofessor(Funcionario funcionario) {
-		ModelAndView mv = new ModelAndView("admin/professores/cadastro");
-		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
-		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
-			String email = autenticado.getName();
-			funcionario = funcionarioRepository.buscarFuncionariEmail(email).get(0);
-		}
-		mv.addObject("funcionario", funcionario);
-		return mv;
+	@GetMapping("/admin/funcionarios/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		Optional<Funcionario> funcionario = funcionarioRepository.findById(id);
+		return cadastrar(funcionario.get());
 	}
 
 	@GetMapping("/admin/funcionarios/listar")
@@ -69,10 +63,16 @@ public class FuncionarioController {
 		return mv;
 	}
 
-	@GetMapping("/admin/funcionarios/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Funcionario> funcionario = funcionarioRepository.findById(id);
-		return cadastrar(funcionario.get());
+	@GetMapping("/professor/funcionarios/cadastrar")
+	public ModelAndView logarprofessor(Funcionario funcionario) {
+		ModelAndView mv = new ModelAndView("admin/professores/cadastro");
+		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
+			String email = autenticado.getName();
+			funcionario = funcionarioRepository.buscarFuncionariEmail(email).get(0);
+		}
+		mv.addObject("funcionario", funcionario);
+		return mv;
 	}
 
 	@GetMapping("/admin/funcionarios/remover/{id}")
